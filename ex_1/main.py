@@ -214,7 +214,10 @@ def orb(image: str, second_image: str, save: bool = False):
 
 
 def main():
-    parser = optparse.OptionParser(description="runs sift, surf or orb algorithms")
+    parser = optparse.OptionParser(
+        usage="main.py [--sift|--surf|--orb] --image=IMAGE --second_image=SECOND_IMAGE [--save|]",
+        description="runs sift, surf or orb algorithms",
+    )
     parser.add_option(
         "--sift",
         action="store_true",
@@ -267,7 +270,7 @@ def main():
     elif options.orb and len(options.image) > 0 and len(options.second_image) > 0:
         orb(options.image, options.second_image, options.save)
     else:
-        print("invalid command")
+        parser.print_help()
 
 
 if __name__ == "__main__":
